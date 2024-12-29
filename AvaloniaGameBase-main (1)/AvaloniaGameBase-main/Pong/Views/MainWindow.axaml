@@ -9,12 +9,17 @@
         SizeToContent="WidthAndHeight"
         Title="Pong">
 
+    <Window.Background>
+        <ImageBrush Source="/Assets/background.png" Stretch="UniformToFill" />
+    </Window.Background>
+
     <Window.Styles>
         <Style Selector="ItemsControl > ContentPresenter" x:DataType="vm:GameObject">
             <Setter Property="Canvas.Left" Value="{Binding Location.X}" />
             <Setter Property="Canvas.Top" Value="{Binding Location.Y}" />
         </Style>
     </Window.Styles>
+
     <ItemsControl
         ItemsSource="{Binding GameObjects}"
         Width="{Binding Width, Mode=OneWay}"
@@ -29,9 +34,27 @@
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="{x:Type vm:Ball}">
                 <Image Width="64" Height="64"
-                    Source="/Assets/Ball.png" />
+                       Source="/Assets/Ball.png" />
             </DataTemplate>
-
+            <DataTemplate DataType="{x:Type vm:Meat}">
+                <Image Width="64" Height="64"
+                       Source="/Assets/Meat.png" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:Rubish}">
+                <Image Width="64" Height="64"
+                       Source="/Assets/Rubish.png" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:Prey}">
+                <Image Width="64" Height="64"
+                       Source="/Assets/Prey.png" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:Plant}">
+                <Image Width="64" Height="64"
+                       Source="/Assets/Plant.png" />
+            </DataTemplate>
+            
+            
         </ItemsControl.DataTemplates>
+        
     </ItemsControl>
 </Window>
