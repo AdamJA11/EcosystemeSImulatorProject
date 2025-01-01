@@ -18,6 +18,8 @@ La classe Rubish est plutot basique elle ne fait que prendre un position et affi
 
 La classe Chase quand elle va representer le reperage et la probabilite de capturer une proie par le predateur. 
 
+principe Solid 
+
 
 
 
