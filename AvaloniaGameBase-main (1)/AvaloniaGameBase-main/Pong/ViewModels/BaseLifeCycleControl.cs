@@ -65,21 +65,27 @@ public class BaseLifeCycleControl : UserControl
         if (Parent is Panel panel)
         {
             panel.Children.Remove(this); // 'this' fait référence à l'instance actuelle de Ball
-            Console.WriteLine("L'élément a été supprimé.");
+            
         }
         else
         {
-            Console.WriteLine("Le contrôle n'a pas de parent Panel.");
+            
         }
     }
 
-    // Nouvelle méthode pour augmenter la durée de vie
-    public void IncreaseLife(int additionalLife)
+    // Nouvelle méthode pour augmenter la durée de vie et la faim
+    public void IncreaseHungerAndLife(int additionalLife, int additionalHunger)
     {
         if (_lifeTimer > 0)
         {
-            _lifeTimer += additionalLife; // Ajouter de la vie
+            _lifeTimer += additionalLife;
             Console.WriteLine($"La durée de vie a été augmentée de {additionalLife} secondes.");
+        }
+
+        if (_hungerTimer > 0)
+        {
+            _hungerTimer += additionalHunger;
+            Console.WriteLine($"La faim a été augmentée de {additionalHunger} secondes.");
         }
     }
 }

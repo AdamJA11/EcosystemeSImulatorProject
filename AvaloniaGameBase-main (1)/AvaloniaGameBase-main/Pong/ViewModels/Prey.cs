@@ -6,6 +6,7 @@ namespace Pong.ViewModels;
 
 public partial class Prey : GameObject
 {
+    private Poop<Prey> _poop;
     private readonly BaseLifeCycleControl _lifeCycleControl;
     private readonly BaseLifeCycleControl _directionChangeCycleControl; // Nouveau timer pour changer la direction
 
@@ -16,6 +17,7 @@ public partial class Prey : GameObject
 
     public Prey(Point location) : base(location)
     {
+        _poop = new Poop<Prey>(this, interval: 8);
         // Créer une instance de BaseLifeCycleControl pour la gestion de la vie
         _lifeCycleControl = new BaseLifeCycleControl(lifeDuration: 30, hungerDuration: 5);
         _lifeCycleControl.OnLifeCycleEnd += HandleLifeCycleEnd;
@@ -75,5 +77,9 @@ public partial class Prey : GameObject
     public Meat TransformToMeat()
     {
         return new Meat(Location); // Crée une instance de Meat à l'emplacement de la Prey
+    }
+    public Rubish TryGenerateRubish(double deltaTime)
+    {
+        return _poop.GenerateRubish(deltaTime);
     }
 }

@@ -6,6 +6,10 @@ namespace Pong.ViewModels;
 
 public partial class Ball : GameObject
 {
+    private Poop<Ball> _poop;
+    private bool isFrozen;
+    private double frozenTimeRemaining;
+    private ContactZone _contactZone;
     private static readonly Random RandomGenerator = new Random();
     private Visionchase _visionchase; // Référence à la zone de détection
 
@@ -19,8 +23,10 @@ public partial class Ball : GameObject
 
     public Ball(Point location) : base(location)
     {
+        _poop = new Poop<Ball>(this, interval: 5); // Créer une instance de Poop pour générer du Rubish
         // Créer une instance de Visionchase autour de la Ball
         _visionchase = new Visionchase(this);
+         _contactZone = new ContactZone(this);
 
         // Créer une instance de BaseLifeCycleControl pour la gestion de la vie
         _lifeCycleControl = new BaseLifeCycleControl(lifeDuration: 20, hungerDuration: 0); // Durée de vie de 20 secondes
@@ -52,6 +58,18 @@ public partial class Ball : GameObject
             newY = 450; // Réapparaît en bas
         else if (newY > 450)
             newY = 0; // Réapparaît en haut
+        if (isFrozen)
+        {
+            frozenTimeRemaining -= 1 / 60.0; // Supposons un Tick à 60 FPS
+            if (frozenTimeRemaining <= 0)
+            {
+                isFrozen = false;
+            }
+            return; // Ne pas exécuter le reste du Tick si figé
+        }
+
+        // Autres logiques de Tick pour la balle
+        
 
         // Mettre à jour la position
         Location = new Point(newX, newY);
@@ -70,7 +88,7 @@ public partial class Ball : GameObject
 
         // Mettre à jour la propriété Velocity
         Velocity = new Point(randomX, randomY);
-        Console.WriteLine($"New Velocity: {Velocity}");
+        
 
         // Redémarrer le timer de changement de direction
         _directionChangeCycleControl.StartTimer();
@@ -85,5 +103,22 @@ public partial class Ball : GameObject
     public void ChasePreyIfInRange(Prey prey)
     {
         _visionchase.ChasePreyIfInRange(prey); // Vérifie et change la direction de la Ball
+    }
+    public bool IsPreyInContactZone(Prey prey)
+    {
+        return _contactZone.IsPreyInZone(prey);
+    }
+    public void FreezeForSeconds(double seconds)
+    {
+        isFrozen = true;
+        frozenTimeRemaining = seconds;
+    }
+    public void ExtendLifetime(int seconds, int hungerSeconds)
+    {
+        _lifeCycleControl.IncreaseHungerAndLife(seconds , hungerSeconds );
+    }
+    public Rubish TryGenerateRubish(double deltaTime)
+    {
+        return _poop.GenerateRubish(deltaTime);
     }
 }
