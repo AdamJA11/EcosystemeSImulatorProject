@@ -42,11 +42,12 @@ Diagramme de classe:
 
 principe Solide :
 
--Les classes et les méthodes ne sont responsables que d'une chose ce qui respecte le principe solide S : Single Responsibility Principle. En effet comme vous pouvez le voir dans mon diagramme de classe chaque classe porte un nom bien precis (son role) 
+1. **Single Responsibility Principle (SRP)**
+
+-Les classes et les méthodes ne sont responsables que d'une chose ce qui respecte le principe solide S : Single Responsibility Principle. En effet comme vous pouvez le voir dans mon diagramme de classe chaque classe porte un nom bien precis (son role) elle est ensuite utilise dans d'autres classe pour accomplir son Objectif comme la classe BaseLifeCycleControl qui gere le cycle de vie de chaque objet present (mort/vie) (frais/pourri) etc.. . Cette classe est basiquement un timer a 2 entre LifeDuration et HungerLife l'un s'ecoulant apres l'autre.
 
 
 
-
-
-
+2. **Open/Closed Principle (OCP)** :
+   - Les classes sont ouvertes à l'extension mais fermées à la modification. Par exemple, la classe Ball peut être étendue avec de nouvelles fonctionnalités sans modifier le code existant, grâce à l'utilisation de composants comme VisionChase ou Contactzone
 
