@@ -21,24 +21,28 @@ La classe Chase quand elle va representer le reperage et la probabilite de captu
 Diagramme d'activite :
 
 
-![image](https://github.com/user-attachments/assets/fc002a39-16a6-4fc0-a46b-7941fa4860f4)
+![image](https://github.com/user-attachments/assets/077df3b3-3993-465e-ba00-f2192009e7aa)
 
 
 Diagramme de sequence:
 
 
-![image](https://github.com/user-attachments/assets/f92bfdc4-ca1c-437d-8889-bb7e526404c7)
+![image](https://github.com/user-attachments/assets/d2d0c1a7-2a12-4178-816b-6d2f22cf2df6)
+
 
 
 Diagramme de classe:
 
 
-![image](https://github.com/user-attachments/assets/a576186b-c266-4900-b226-a0279a963426)
+![image](https://github.com/user-attachments/assets/7bbaba1a-ca02-47a7-a900-5c31ea581cf5)
 
 
 
 
-principe Solid :
+
+principe Solide :
+
+-Les classes et les méthodes ne sont responsables que d'une chose ce qui respecte le principe solide S : Single Responsibility Principle. En effet comme vous pouvez le voir dans mon diagramme de classe chaque classe porte un nom bien precis (son role) 
 
 
 
